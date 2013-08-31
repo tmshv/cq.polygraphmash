@@ -1,0 +1,461 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"public",
+				"public_path"
+			],
+			[
+				"t",
+				"tmshv"
+			],
+			[
+				"userpic",
+				"userpicBuffer"
+			],
+			[
+				"CUSTOMER",
+				"CUSTOMER_OPINION"
+			],
+			[
+				"b",
+				"text-bottom"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"i",
+				"include"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"bac",
+				"background-color"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "polargraph/polargraph.pde",
+			"settings":
+			{
+				"buffer_size": 15648,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 227.0,
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"jade",
+				"Set Syntax: Jade"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"intal",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 169.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/controllers/email.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/tooth.sublime-project",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/views/customers.jade",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/routers/customers.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/config.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/public/code/contacts.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/app.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/views/manage.jade",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/routers/manage.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/controllers/admin.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/public/code/customers.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/routers/contacts.js",
+		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/package.json",
+		"/E/Dropbox/Dev/mostradegroup.com/mostradegroup/.gitignore",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/public/code/customers.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/yandex-metrika.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/public/code/manage.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/routers/manage.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/controllers/admin.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/yandex-metrika2.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/.gitignore",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/controllers/email.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/manage.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/app.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/routers/customers.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/public/code/contacts.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/contacts.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/routers/contacts.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/public/code/tooltip.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/head.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/customers.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/controllers/utils.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/public/code/jquery-2.0.3.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/config.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/public/style.css",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/public/animate.css",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/node_modules/jade/node_modules/transformers/node_modules/uglify-js/lib/mozilla-ast.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/controllers/index.js",
+		"/D/animate-custom.css",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/tooth.sublime-project",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/routers/index.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/routers/using.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/using.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/about.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/copyright.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/menu_main.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/contacts2.jade",
+		"/C/Users/Roman/Downloads/JfwC.log",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/partners.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/controllers/auth.js",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/index.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/menu_footer.jade",
+		"/E/Dropbox/Dev/zubochistka1.ru/www/views/main.jade",
+		"/C/Users/Roman/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/D/lspatch-2013-08-15-18-14.json",
+		"/C/Users/Roman/AppData/Local/Temp/Temp1_flash_sboot_v2.zip/META-INF/com/google/android/updater-script",
+		"/C/Users/Roman/Desktop/updater-script",
+		"/C/Dev/Android Sandbox/updater-script",
+		"/E/Dropbox/Dev/zubochistka1.ru/templ/contacts.html",
+		"/E/Dropbox/Dev/zubochistka1.ru/templ/style.css",
+		"/C/Users/Roman/AppData/Local/Temp/7zO52A0.tmp/updater-script",
+		"/C/Dev/Android Sandbox/cm-10.1-20130326-UNOFFICIAL-leo/META-INF/com/google/android/updater-script",
+		"/D/work4 (1)/style4.css",
+		"/C/Users/Roman/.ssh/id_rsa.pub",
+		"/D/id_rsa.pub",
+		"/C/Dev/dart/DartEditor.ini",
+		"/C/Users/Roman/.ssh/github_rsa",
+		"/C/Users/Roman/.ssh/github_rsa.pub"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"center",
+			"span",
+			"message",
+			"email",
+			"admin",
+			"col",
+			"e",
+			"communication",
+			"        \n",
+			"err",
+			"xmlhttp",
+			"animated",
+			"userpic",
+			".leftpart",
+			"#Menu",
+			"trianglelink",
+			"')\n",
+			";",
+			"btn_send",
+			";",
+			"Common"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"#leftpart",
+			".leftpart",
+			";\\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "polargraph/polargraph.pde",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15648,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 161.0
+	},
+	"project": "cq.polygraphmash.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"cty",
+				"www/public/style.css"
+			],
+			[
+				"cus",
+				"www/views/customers.jade"
+			],
+			[
+				"mana",
+				"www/routers/manage.js"
+			],
+			[
+				"manajad",
+				"www/views/manage.jade"
+			],
+			[
+				"app",
+				"www/app.js"
+			],
+			[
+				"ad",
+				"www/controllers/admin.js"
+			],
+			[
+				"con",
+				"www/config.js"
+			],
+			[
+				"ema",
+				"www/controllers/email.js"
+			],
+			[
+				"em",
+				"www\\controllers\\email.js"
+			],
+			[
+				"met",
+				"www\\views\\yandex-metrika.jade"
+			],
+			[
+				"admi",
+				"www\\controllers\\admin.js"
+			],
+			[
+				"rouma",
+				"www\\routers\\manage.js"
+			],
+			[
+				"majade",
+				"www\\views\\manage.jade"
+			],
+			[
+				"conja",
+				"www\\views\\contacts.jade"
+			],
+			[
+				"conta",
+				"www\\routers\\contacts.js"
+			],
+			[
+				"cu",
+				"www\\views\\customers.jade"
+			],
+			[
+				"cust",
+				"www\\public\\code\\customers.js"
+			],
+			[
+				"contac",
+				"www\\public\\code\\contacts.js"
+			],
+			[
+				"manaja",
+				"www\\views\\manage.jade"
+			],
+			[
+				"ma",
+				"www\\node_modules\\jade\\node_modules\\transformers\\node_modules\\uglify-js\\lib\\mozilla-ast.js"
+			],
+			[
+				"c",
+				"www\\config.js"
+			],
+			[
+				"ani",
+				"www\\public\\animate.css"
+			],
+			[
+				"sty",
+				"www\\public\\style.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"E:\\Dropbox\\Dev\\Diet\\diet.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 250.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
