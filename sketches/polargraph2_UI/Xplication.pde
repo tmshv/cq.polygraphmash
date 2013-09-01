@@ -8,20 +8,20 @@ class Xplication {
   }
   void display () {
   
-  // DY UI colors of functions
-  color fc1 = #7600FF;  // production
-  color fc2 = #FF00F3;  // entertainment
-  color fc3 = #C3FF00;  // service
-  color fc4 = #FF8D00;  // art
-  color fc5 = #00E3FF;  // education
-  color fc6 = #0028FF;  // restobars
-  color fc7 = #00FFA3;  // retail
+  // colors of functions
+  color fc1 = #634673;  // production
+  color fc2 = #FF6600;  // entertainment
+  color fc3 = #8B9DC3;  // service
+  color fc4 = #FC6666;  // art
+  color fc5 = #98DAD3;  // education
+  color fc6 = #F7B3B3;  // restobars
+  color fc7 = #CC0066;  // retail
   color fc8 = #949B98;  // emtyspaces
   color fc9 = #050505;  // roofs 
   
   int fx = 5;
   int yx = 20;
-  int ffx = 107;
+  int ffx = 157;
   int add = 15;
   
   noStroke();

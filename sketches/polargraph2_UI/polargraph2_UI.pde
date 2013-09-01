@@ -4,6 +4,7 @@ import processing.pdf.*;
 ControlP5 cp5;
 
 Xplication xpl = new Xplication ();  // DY UI XPL
+Menu mnu = new Menu ();              // DY UI MNU
 PFont dyFont;                        // DY UI XPL
 
 Map map;
@@ -59,7 +60,8 @@ void draw(){
 
   background(#eeeeee);
   view.render();
-  xpl.display();
+  xpl.display();    // DY UI XPL
+  mnu.display();    // DY UI MNU
   
 }
 
