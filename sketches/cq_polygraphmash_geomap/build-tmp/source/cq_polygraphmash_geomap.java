@@ -17,9 +17,11 @@ public class cq_polygraphmash_geomap extends PApplet {
 Table table;
 Table accessTable;
 
-Remap remap;
 ArrayList<PVector[]> geom;
 ArrayList<PVector> accessPoints;
+
+PVector geoCenter = new PVector(30.3166f, 59.9695f);
+PVector center;
 
 PVector tl;
 PVector rb;
@@ -31,6 +33,7 @@ public void setup(){
 	
 	tl = convertGeo(new PVector(30.314234f, 59.971177f));
 	rb = convertGeo(new PVector(30.318649f, 59.967648f));
+	center = convertGeo(geoCenter);
 
 	PVector tlg = convertGeo(new PVector(30.314234f, 59.971177f));
 	PVector rbg = convertGeo(new PVector(30.318649f, 59.967648f));
@@ -60,39 +63,9 @@ public void setup(){
 }
 
 public void draw(){
+	translate(width/2, height/2);
+
 	background(0xffffffff);
-
-	// float minY = 100000000;
-	// float maxY = 0;
-	// for (TableRow row : table.rows()) {
-	// 	String geo = row.getString("wkt_geom");
-	// 	PVector[] coords = readLineString(geo);
-		
-	// 	for(int i=0; i<coords.length; i++){
-	// 		PVector c = convertGeo(coords[i]);
-	// 		if(minY > c.y){
-	// 			minY = c.y;
-	// 		}
-	// 		if(maxY < c.y){
-	// 			maxY = c.y;
-	// 		}
-	// 	}
-	// }
-	// double ratio = height / (maxY - minY);
-	// remap = new Remap(minY, maxY, ratio);
-
-	// for (TableRow row : table.rows()) {
-	// 	String geo = row.getString("wkt_geom");
-	// 	PVector[] coords = readLineString(geo);
-	// 	drawLines(coords);
-	// }
-
-	
-	// scale(1, -1);
-	// translate(width/2, height/2);
-	// rotate(HALF_PI);
-	
-	// translate(width, height);
 
 	for(PVector[] coords : geom){
 		beginShape();
@@ -126,6 +99,10 @@ public void draw(){
 	ellipse(rbr.x, rbr.y, 15, 15);
 	println("tlr: "+tlr);	
 	println("rbr: "+rbr);
+
+	PVector rc = remap(center, 0.1f);
+	fill(0xffaa0000);
+	ellipse(rc.x, rc.y, 50, 50);
 }
 
 public PVector[] readLineString(String raw){
@@ -151,27 +128,19 @@ public PVector readPointString(String raw){
 	return new PVector(x, y);
 }
 
-public void drawLines(PVector[] coords){
-	pushStyle();
-	fill(0xffcccccc);
-	noStroke();
-	beginShape();
-	for(int i=0; i<coords.length; i++){
-		PVector sc = convertGeo(coords[i]);
-		PVector c = remap.remap(sc);
-		vertex(c.x, c.y);
-	}
-	endShape(CLOSE);
-	popStyle();
+public PVector remap(PVector coord){
+	return remap(coord, 2);
+	// float h = rb.y - tl.y;
+	// float r = height / h;
+
+	// PVector out = PVector.sub(coord, tl);
+	// out.mult(r);
+	// return out;
 }
 
-public PVector remap(PVector coord){
-	float h = rb.y - tl.y;
-	float r = height / h;
-
-	PVector out = PVector.sub(coord, tl);
-	out.mult(r);
-	// out.mult(0.1);
+public PVector remap(PVector coord, float scaleFactor){
+	PVector out = PVector.sub(coord, center);
+	out.mult(scaleFactor);
 	return out;
 }
 
@@ -189,12 +158,12 @@ public PVector convertGeo(PVector coord){
 	// return new PVector(x, y);
 	
 	//3
-	// float[] xyz = getXYZfromLatLon(coord.x, coord.y, 0);
-	// return new PVector(xyz[0], xyz[1]);
+	float[] xyz = getXYZfromLatLon(coord.x, coord.y, 0);
+	return new PVector(xyz[0], xyz[1]);
 
 	//4
-	float[] xy = convertLatLongToMerc(coord.x, coord.y);
-	return new PVector(xy[0], xy[1]);
+	// float[] xy = convertLatLongToMerc(coord.x, coord.y);
+	// return new PVector(xy[0], xy[1]);
 }
 
 public PVector[] toScreen(PVector[] source){
@@ -238,22 +207,6 @@ public float[] convertLatLongToMerc(float lon, float lat){
     float yy = tan(PI/4+rLat/2) * ((1-e*sin(rLat)) / (1+e*sin(rLat)));
     float y = a * log(pow(yy, (e/2)));
     return new float[]{x, y};
-}
-public class Remap{
-	double mny;
-	double mxy;
-	double r;
-	public Remap (double mny, double mxy, double r) {
-		this.mny = mny;
-		this.mxy = mxy;
-		this.r = r;
-	}
-
-	public PVector remap(PVector coord){
-		PVector a = PVector.sub(coord, new PVector(0, (float) mny));
-		a.mult((float) r);
-		return a;
-	}
 }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "cq_polygraphmash_geomap" };

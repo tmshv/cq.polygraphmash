@@ -4,6 +4,9 @@ Table accessTable;
 ArrayList<PVector[]> geom;
 ArrayList<PVector> accessPoints;
 
+PVector geoCenter = new PVector(30.3166, 59.9695);
+PVector center;
+
 PVector tl;
 PVector rb;
 
@@ -14,6 +17,7 @@ void setup(){
 	
 	tl = convertGeo(new PVector(30.314234, 59.971177));
 	rb = convertGeo(new PVector(30.318649, 59.967648));
+	center = convertGeo(geoCenter);
 
 	PVector tlg = convertGeo(new PVector(30.314234, 59.971177));
 	PVector rbg = convertGeo(new PVector(30.318649, 59.967648));
@@ -43,6 +47,8 @@ void setup(){
 }
 
 void draw(){
+	translate(width/2, height/2);
+
 	background(#ffffff);
 
 	for(PVector[] coords : geom){
@@ -77,6 +83,10 @@ void draw(){
 	ellipse(rbr.x, rbr.y, 15, 15);
 	println("tlr: "+tlr);	
 	println("rbr: "+rbr);
+
+	PVector rc = remap(center, 0.1);
+	fill(#aa0000);
+	ellipse(rc.x, rc.y, 50, 50);
 }
 
 PVector[] readLineString(String raw){
@@ -102,27 +112,19 @@ PVector readPointString(String raw){
 	return new PVector(x, y);
 }
 
-void drawLines(PVector[] coords){
-	pushStyle();
-	fill(#cccccc);
-	noStroke();
-	beginShape();
-	for(int i=0; i<coords.length; i++){
-		PVector sc = convertGeo(coords[i]);
-		PVector c = remap.remap(sc);
-		vertex(c.x, c.y);
-	}
-	endShape(CLOSE);
-	popStyle();
+PVector remap(PVector coord){
+	return remap(coord, 2);
+	// float h = rb.y - tl.y;
+	// float r = height / h;
+
+	// PVector out = PVector.sub(coord, tl);
+	// out.mult(r);
+	// return out;
 }
 
-PVector remap(PVector coord){
-	float h = rb.y - tl.y;
-	float r = height / h;
-
-	PVector out = PVector.sub(coord, tl);
-	out.mult(r);
-	// out.mult(0.1);
+PVector remap(PVector coord, float scaleFactor){
+	PVector out = PVector.sub(coord, center);
+	out.mult(scaleFactor);
 	return out;
 }
 
