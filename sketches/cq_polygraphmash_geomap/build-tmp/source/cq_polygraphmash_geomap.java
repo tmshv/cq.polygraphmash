@@ -90,10 +90,9 @@ public void draw(){
 	
 	// scale(1, -1);
 	// translate(width/2, height/2);
-	rotate(HALF_PI);
+	// rotate(HALF_PI);
 	
-	translate(width, height);
-
+	// translate(width, height);
 
 	for(PVector[] coords : geom){
 		beginShape();
@@ -172,19 +171,30 @@ public PVector remap(PVector coord){
 
 	PVector out = PVector.sub(coord, tl);
 	out.mult(r);
+	// out.mult(0.1);
 	return out;
 }
 
 public PVector convertGeo(PVector coord){
-	float lat = radians(coord.x);
-	float lon = radians(coord.y);
-	float R = 6383584;
-	float x = R * cos(lat) * cos(lon);
-	float y = R * cos(lat) * sin(lon);
-	float z = R * sin(lat);
-
-	return new PVector(x, y);
+	//1
 	// return coord;
+
+	//2
+	// float lat = radians(coord.x);
+	// float lon = radians(coord.y);
+	// float R = 6383584;
+	// float x = R * cos(lat) * cos(lon);
+	// float y = R * cos(lat) * sin(lon);
+	// float z = R * sin(lat);
+	// return new PVector(x, y);
+	
+	//3
+	// float[] xyz = getXYZfromLatLon(coord.x, coord.y, 0);
+	// return new PVector(xyz[0], xyz[1]);
+
+	//4
+	float[] xy = convertLatLongToMerc(coord.x, coord.y);
+	return new PVector(xy[0], xy[1]);
 }
 
 public PVector[] toScreen(PVector[] source){
@@ -193,6 +203,41 @@ public PVector[] toScreen(PVector[] source){
 		out[i] = convertGeo(source[i]);
 	}
 	return out;
+}
+
+public float[] getXYZfromLatLon(float latitudeDeg, float longitudeDeg, float height){
+	float latitude = radians(latitudeDeg);
+	float longitude = radians(longitudeDeg);
+
+    float a = 6378137.0f; //semi major axis
+    float b = 6356752.3142f; //semi minor axis
+    float cosLat = cos(latitude);
+    float sinLat = sin(latitude);
+	
+    float rSubN = (a*a) / sqrt(((a*a) * (cosLat*cosLat) + ((b*b) * (sinLat*sinLat))));
+	
+    float X = (rSubN + height) * cosLat * cos(longitude);
+    float Y = (rSubN + height) * cosLat * sin(longitude);
+    float Z = ((((b*b) / (a*a)) * rSubN) + height) * sinLat;
+	
+    return new float[] {X, Y, Z};
+}
+
+public float[] convertLatLongToMerc(float lon, float lat){
+    if (lat > 89.5f) lat = 89.5f;
+    if (lat < -89.5f) lat=-89.5f;
+
+    float rLat = radians(lat);
+    float rLong = radians(lon);
+
+    float a = 6378137.0f;
+    float b = 6356752.3142f;
+    float f = (a-b)/a;
+    float e = sqrt(2*f - f*f);
+    float x = a*rLong;
+    float yy = tan(PI/4+rLat/2) * ((1-e*sin(rLat)) / (1+e*sin(rLat)));
+    float y = a * log(pow(yy, (e/2)));
+    return new float[]{x, y};
 }
 public class Remap{
 	double mny;
