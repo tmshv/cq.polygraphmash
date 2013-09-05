@@ -3,6 +3,8 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import processing.pdf.*; 
+
 import java.util.HashMap; 
 import java.util.ArrayList; 
 import java.io.File; 
@@ -14,11 +16,12 @@ import java.io.IOException;
 
 public class cq_polygraphmash_geomap extends PApplet {
 
+
+
 Table table;
-Table accessTable;
 
 ArrayList<PVector[]> geom;
-ArrayList<PVector> accessPoints;
+ArrayList<AccessPoint> accessPoints;
 
 PVector geoCenter = new PVector(30.3166f, 59.9695f);
 PVector center;
@@ -28,8 +31,10 @@ PVector rb;
 
 public void setup(){
 	size(700, 700);
+	smooth();
+
 	table = loadTable("spsheet.csv", "header");
-	accessTable = loadTable("access_points.csv", "header");
+	initAccessPoints("access_points.csv");
 	
 	tl = convertGeo(new PVector(30.314234f, 59.971177f));
 	rb = convertGeo(new PVector(30.318649f, 59.967648f));
@@ -40,9 +45,6 @@ public void setup(){
 	tl = new PVector(min(tlg.x, rbg.x), min(tlg.y, rbg.y));
 	rb = new PVector(max(tlg.x, rbg.x), max(tlg.y, rbg.y));
 
-	println("tl: "+tl);
-	println("rb: "+rb);
-
 	//fill geom
 	geom = new ArrayList<PVector[]>();
 	for (TableRow row : table.rows()) {
@@ -51,58 +53,100 @@ public void setup(){
 		geom.add(toScreen(coords));
 	}
 
-	//fill access
-	accessPoints = new ArrayList<PVector>();
-	for (TableRow row : accessTable.rows()) {
-		String geo = row.getString("wkt_geom");
-		PVector coord = readPointString(geo);
-		accessPoints.add(convertGeo(coord));
-	}
+	PGraphics pdf = createGraphics(width, height, PDF, "map.pdf");
+	renderGeom(pdf);
+	pdf.dispose();
+	println("pdf: "+pdf);
 
 	noLoop();
 }
 
+public void initAccessPoints(String file){
+	Table table = loadTable(file, "header");
+	accessPoints = new ArrayList<AccessPoint>();
+	for (TableRow row : table.rows()) {
+		String geo = row.getString("wkt_geom");
+		PVector coord = readPointString(geo);
+
+		int car = row.getInt("car");
+
+		AccessPoint ap = new AccessPoint(row.getInt("id"), coord);
+		ap.hasCarParking = car != 0; 
+		ap.coord = convertGeo(coord);
+		accessPoints.add(ap);
+	}
+}
+
 public void draw(){
-	translate(width/2, height/2);
+	renderGeom(g);
+}
 
-	background(0xffffffff);
+public void renderGeom(PGraphics pg){
+	pg.beginDraw();
+	pg.pushMatrix();
+	pg.translate(width/2, height/2);
+	// pg.rotate(TWO_PI);
+	pg.scale(1, -1);
 
+	pg.background(0xffffffff);
+
+	//draw geom
+	pg.pushStyle();
+	noStroke();
+	fill(0xff000000);
 	for(PVector[] coords : geom){
-		beginShape();
+		// fill(color(random(255), random(255), random(255)));
+		pg.beginShape();
 		for(int i = 0; i<coords.length; i ++){
-			// PVector c = coords[i];
 			PVector c = remap(coords[i]);
-			vertex(c.x, c.y);
-			println(c);
+			pg.vertex(c.x, c.y);
 		}
-		endShape(CLOSE);
+		pg.endShape(CLOSE);
 	}
+	pg.popStyle();
 
-	pushStyle();
-	ellipseMode(CENTER);
-	noStroke();
-	fill(0xff99dd99);
-	for(PVector coord : accessPoints){
-		PVector c = remap(coord);
-		ellipse(c.x, c.y, 10, 10);
+	//draw entrance
+	pg.pushStyle();
+	pg.ellipseMode(CENTER);
+	pg.noStroke();
+	for(AccessPoint ap : accessPoints){
+		pg.fill(ap.hasCarParking ? 0xffbbdd99 : 0xffdd99bb);
+		PVector c = remap(ap.coord);
+		pg.ellipse(c.x, c.y, 10, 10);
 	}
-	popStyle();
+	pg.popStyle();
 
-	strokeWeight(10);
-	PVector tlr = remap(tl);
-	PVector rbr = remap(rb);
-	line(tlr.x, tlr.y, rbr.x, rbr.y);
-	noStroke();
-	fill(0xff333333);
-	ellipseMode(CENTER);
-	ellipse(tlr.x, tlr.y, 15, 15);
-	ellipse(rbr.x, rbr.y, 15, 15);
-	println("tlr: "+tlr);	
-	println("rbr: "+rbr);
+	// pg.strokeWeight(10);
+	// PVector tlr = remap(tl);
+	// PVector rbr = remap(rb);
+	// pg.line(tlr.x, tlr.y, rbr.x, rbr.y);
+	// pg.noStroke();
+	// pg.fill(#333333);
+	// pg.ellipseMode(CENTER);
+	// pg.ellipse(tlr.x, tlr.y, 15, 15);
+	// pg.ellipse(rbr.x, rbr.y, 15, 15);
+	pg.endDraw();
+	pg.popMatrix();
+}
 
-	PVector rc = remap(center, 0.1f);
-	fill(0xffaa0000);
-	ellipse(rc.x, rc.y, 50, 50);
+public void renderAccessPoints(PGraphics pg){
+	pg.beginDraw();
+	pg.pushMatrix();
+	pg.translate(width/2, height/2);
+	pg.scale(1, -1);
+
+	pg.pushStyle();
+	pg.ellipseMode(CENTER);
+	pg.noStroke();
+	for(AccessPoint ap : accessPoints){
+		pg.fill(ap.hasCarParking ? 0xffbbdd99 : 0xffdd99bb);
+		PVector c = remap(ap.coord);
+		pg.ellipse(c.x, c.y, 10, 10);
+	}
+	pg.popStyle();
+
+	pg.endDraw();
+	pg.popMatrix();
 }
 
 public PVector[] readLineString(String raw){
@@ -129,7 +173,7 @@ public PVector readPointString(String raw){
 }
 
 public PVector remap(PVector coord){
-	return remap(coord, 2);
+	return remap(coord, 1);
 	// float h = rb.y - tl.y;
 	// float r = height / h;
 
@@ -158,12 +202,16 @@ public PVector convertGeo(PVector coord){
 	// return new PVector(x, y);
 	
 	//3
-	float[] xyz = getXYZfromLatLon(coord.x, coord.y, 0);
-	return new PVector(xyz[0], xyz[1]);
+	// float[] xyz = getXYZfromLatLon(coord.x, coord.y, 0);
+	// return new PVector(xyz[0], xyz[1]);
 
 	//4
 	// float[] xy = convertLatLongToMerc(coord.x, coord.y);
 	// return new PVector(xy[0], xy[1]);
+
+	//5
+	float[] xy = convertLatLongSpherToMerc(coord.x, coord.y);
+	return new PVector(xy[0], xy[1]);
 }
 
 public PVector[] toScreen(PVector[] source){
@@ -207,6 +255,44 @@ public float[] convertLatLongToMerc(float lon, float lat){
     float yy = tan(PI/4+rLat/2) * ((1-e*sin(rLat)) / (1+e*sin(rLat)));
     float y = a * log(pow(yy, (e/2)));
     return new float[]{x, y};
+}
+
+ 
+public float[] convertLatLongSpherToMerc(float lon, float lat){
+	if (lat > 89.5f) lat = 89.5f;
+    if (lat < -89.5f) lat=-89.5f;
+
+    float rLat = radians(lat);
+    float rLong = radians(lon);
+ 
+    float a = 6378137.0f;
+    float x = a * rLong;
+    float y = a * log(tan(PI/4+rLat/2));
+    return new float[]{x, y};
+}
+public class AccessPoint{
+	public int id;
+	public int brandwidth;
+	public PVector geoCoord;
+	public PVector coord;
+	public boolean hasCarParking;
+
+	public AccessPoint (int id, PVector geo) {
+		this.id = id;
+		this.geoCoord = geo;
+	}
+}
+public class Building{
+	public int id;
+	public int brandwidth;
+	public PVector geoCoord;
+	public PVector coord;
+	public boolean hasCarParking;
+
+	public Building (int id, PVector geo) {
+		this.id = id;
+		this.geoCoord = geo;
+	}
 }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "cq_polygraphmash_geomap" };

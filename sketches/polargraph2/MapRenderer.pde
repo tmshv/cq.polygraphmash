@@ -6,7 +6,7 @@ public class MapRenderer{
 	public int radius = 200;
 	public float startArcAngle = 0;
 	public PVector center = new PVector();
-
+	public int limit = 0;
 	public float beta = 0;
 	public float bezierStepT = 0.025;
 
@@ -18,9 +18,10 @@ public class MapRenderer{
 	}
 
 	public void render() {
-		if(itemsView.size() != map.items.size()){
-			computeItems();
-		}
+		computeItems();
+		// if(itemsView.size() != map.items.size()){
+		// 	computeItems();
+		// }
 
 		pushMatrix();
 		translate(center.x, center.y);
@@ -57,9 +58,10 @@ public class MapRenderer{
 			pushMatrix();
 			stroke(item.c);
 			strokeWeight(itemThickness);
-
+			// translate(center.x, center.y);
 			// arc(center.x, center.y, w, w, view.angleStart, view.angleStop);
-			arc(0, 0, w, w, view.angleStart, view.angleStop);
+			// arc(0, 0, w, w, view.angleStart, view.angleStop);
+			drawArc(view.angleStart, view.angleStop, radius, radius+20, item.c);
 
 			popMatrix();
 			i += 1;
@@ -142,10 +144,11 @@ public class MapRenderer{
 		itemsView = new ArrayList<ItemView>();
 
 		int i = 0;
-		int total = map.calcTotalPower();
+		int total = limit > 0 ? map.calcTotalPower(limit) : map.calcTotalPower();
 
 		float start_angle = startArcAngle;
 		for(Item item : map.items){
+			if(limit > 0 && i > limit) break;
 			float circ_ratio = item.power / (float) total;
 			float angle = circ_ratio * TWO_PI;
 			float stop_angle = start_angle + angle;
@@ -160,6 +163,51 @@ public class MapRenderer{
 			start_angle = stop_angle;
 			i += 1;
 		}	
+	}
+
+	void drawArc(float start_a, float finish_a, float inner_radius, float outer_radius, color c) {
+		fill(c);
+		noStroke();
+		//  stroke(0);
+
+		float angle_delta = finish_a - start_a;
+		// int center_x = width / 2;
+		// int center_y = height / 2;
+		int center_x = 0;
+		int center_y = 0;
+		int pass_length = 1;
+		int pass_number = 0;
+		float angular_step = 0;
+		float cur_x = 0;
+		float cur_y = 0;
+		float current_angle = 0;
+		float arc_length = 0;
+
+		beginShape();
+
+		angular_step = 2 * asin(pass_length/inner_radius/2);
+		arc_length = angle_delta * inner_radius;
+		pass_number = (int)(arc_length / pass_length);
+		current_angle = start_a;
+		for (int i=0; i<pass_number; i++) {
+		cur_x = center_x + (cos(current_angle) * inner_radius);
+		cur_y = center_y + (sin(current_angle) * inner_radius);
+		vertex((int) cur_x, (int) cur_y);
+		current_angle += angular_step;
+		}
+
+		angular_step = 2 * asin(pass_length/outer_radius/2);
+		arc_length = angle_delta * outer_radius;
+		pass_number = (int)(arc_length / pass_length);
+		current_angle = finish_a;
+		for (int i=0; i<pass_number; i++) {
+		cur_x = center_x + (cos(current_angle) * outer_radius);
+		cur_y = center_y + (sin(current_angle) * outer_radius);
+		vertex((int) cur_x, (int) cur_y);
+		current_angle -= angular_step;
+		}
+
+		endShape(CLOSE);
 	}
 }
 

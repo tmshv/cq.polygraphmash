@@ -26,49 +26,58 @@ Map map;
 MapRenderer view;
 
 float beta;
+int num;
 
 public void setup(){
   size(650, 650);
   smooth();
 
-  cp5 = new ControlP5(this);
-
   map = new Map();
-  map.create("n1", 10, 0xff236721);
-  map.create("n2", 50, 0xff582679);
-  map.create("n3", 25, 0xff578294);
-  map.create("n4", 25, 0xffeabd46);
-  map.create("n5", 25, 0xfff901be);
+  // map.create("n1", 10, #236721);
+  // map.create("n2", 50, #582679);
+  // map.create("n3", 25, #578294);
+  // map.create("n4", 25, #eabd46);
+  // map.create("n5", 25, #f901be);
 
-  for(int i = 0; i<50; i++){
-      map.create("n", (int) random(1, 100));
+  for(int i = 0; i<300; i++){
+      int c = color((int) random(255), (int) random(255), (int) random(255));
+      map.create("n", 1, c);
   }
 
-  for(int i = 0; i<50; i++){
-      map.create("n", (int) random(100, 1000));
-  }
+  // for(int i = 0; i<50; i++){
+  //     map.create("n", (int) random(100, 1000));
+  // }
 
-  map.link("n1", "n2", 23);
-  map.link("n1", "n3", 5);
-  map.link("n1", "n5", 65);
+  // map.link("n1", "n2", 23);
+  // map.link("n1", "n3", 5);
+  // map.link("n1", "n5", 65);
 
-  map.link("n2", "n3", 46);
-  map.link("n2", "n4", 46);
-  map.link("n2", "n5", 46);
+  // map.link("n2", "n3", 46);
+  // map.link("n2", "n4", 46);
+  // map.link("n2", "n5", 46);
 
   view = new MapRenderer(map);
   view.center.x = width / 2;
   view.center.y = height /2;
 
+  int cp_pos = 10;
+  cp5 = new ControlP5(this);
   cp5.addSlider("beta")
-    .setPosition(10, 10)
-      .setSize(200, 20)
-        .setRange(0, 1)
-          .setValue(0);
+    .setPosition(10, cp_pos)
+    .setSize(200, 20)
+    .setRange(0, 1)
+    .setValue(0);
+  cp_pos += 25;
+  cp5.addSlider("num")
+    .setPosition(10, cp_pos)
+    .setSize(200, 20)
+    .setRange(1, 300)
+    .setValue(20);
 }
 
 public void draw(){
   view.beta = beta;
+  view.limit = num;
 
   background(0xffeeeeee);
   view.render();
@@ -160,9 +169,21 @@ class Map{
 	}
 
 	public int calcTotalPower() {
+		// int total = 0;
+		// for(Item i : items){
+		// 	total += i.power;
+		// }
+		// return total;
+		return calcTotalPower(items.size());
+	}
+
+	public int calcTotalPower(int limit) {
 		int total = 0;
-		for(Item i : items){
-			total += i.power;
+		int i = 0;
+		for(Item item : items){
+			if(i >= limit) break;
+			total += item.power;
+			i ++;
 		}
 		return total;
 	}
@@ -185,7 +206,7 @@ public class MapRenderer{
 	public int radius = 200;
 	public float startArcAngle = 0;
 	public PVector center = new PVector();
-
+	public int limit = 0;
 	public float beta = 0;
 	public float bezierStepT = 0.025f;
 
@@ -197,9 +218,10 @@ public class MapRenderer{
 	}
 
 	public void render() {
-		if(itemsView.size() != map.items.size()){
-			computeItems();
-		}
+		computeItems();
+		// if(itemsView.size() != map.items.size()){
+		// 	computeItems();
+		// }
 
 		pushMatrix();
 		translate(center.x, center.y);
@@ -236,9 +258,10 @@ public class MapRenderer{
 			pushMatrix();
 			stroke(item.c);
 			strokeWeight(itemThickness);
-
+			// translate(center.x, center.y);
 			// arc(center.x, center.y, w, w, view.angleStart, view.angleStop);
-			arc(0, 0, w, w, view.angleStart, view.angleStop);
+			// arc(0, 0, w, w, view.angleStart, view.angleStop);
+			drawArc(view.angleStart, view.angleStop, radius, radius+20, item.c);
 
 			popMatrix();
 			i += 1;
@@ -321,10 +344,11 @@ public class MapRenderer{
 		itemsView = new ArrayList<ItemView>();
 
 		int i = 0;
-		int total = map.calcTotalPower();
+		int total = limit > 0 ? map.calcTotalPower(limit) : map.calcTotalPower();
 
 		float start_angle = startArcAngle;
 		for(Item item : map.items){
+			if(limit > 0 && i > limit) break;
 			float circ_ratio = item.power / (float) total;
 			float angle = circ_ratio * TWO_PI;
 			float stop_angle = start_angle + angle;
@@ -339,6 +363,51 @@ public class MapRenderer{
 			start_angle = stop_angle;
 			i += 1;
 		}	
+	}
+
+	public void drawArc(float start_a, float finish_a, float inner_radius, float outer_radius, int c) {
+		fill(c);
+		noStroke();
+		//  stroke(0);
+
+		float angle_delta = finish_a - start_a;
+		// int center_x = width / 2;
+		// int center_y = height / 2;
+		int center_x = 0;
+		int center_y = 0;
+		int pass_length = 1;
+		int pass_number = 0;
+		float angular_step = 0;
+		float cur_x = 0;
+		float cur_y = 0;
+		float current_angle = 0;
+		float arc_length = 0;
+
+		beginShape();
+
+		angular_step = 2 * asin(pass_length/inner_radius/2);
+		arc_length = angle_delta * inner_radius;
+		pass_number = (int)(arc_length / pass_length);
+		current_angle = start_a;
+		for (int i=0; i<pass_number; i++) {
+		cur_x = center_x + (cos(current_angle) * inner_radius);
+		cur_y = center_y + (sin(current_angle) * inner_radius);
+		vertex((int) cur_x, (int) cur_y);
+		current_angle += angular_step;
+		}
+
+		angular_step = 2 * asin(pass_length/outer_radius/2);
+		arc_length = angle_delta * outer_radius;
+		pass_number = (int)(arc_length / pass_length);
+		current_angle = finish_a;
+		for (int i=0; i<pass_number; i++) {
+		cur_x = center_x + (cos(current_angle) * outer_radius);
+		cur_y = center_y + (sin(current_angle) * outer_radius);
+		vertex((int) cur_x, (int) cur_y);
+		current_angle -= angular_step;
+		}
+
+		endShape(CLOSE);
 	}
 }
 

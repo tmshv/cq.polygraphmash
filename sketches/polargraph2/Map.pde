@@ -56,9 +56,21 @@ class Map{
 	}
 
 	public int calcTotalPower() {
+		// int total = 0;
+		// for(Item i : items){
+		// 	total += i.power;
+		// }
+		// return total;
+		return calcTotalPower(items.size());
+	}
+
+	public int calcTotalPower(int limit) {
 		int total = 0;
-		for(Item i : items){
-			total += i.power;
+		int i = 0;
+		for(Item item : items){
+			if(i >= limit) break;
+			total += item.power;
+			i ++;
 		}
 		return total;
 	}
