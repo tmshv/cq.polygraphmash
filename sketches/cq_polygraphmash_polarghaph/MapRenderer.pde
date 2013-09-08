@@ -76,9 +76,13 @@ public class MapRenderer{
 		for(ItemView view : itemsView){
 			pushMatrix();
 			Item item = view.item;
-			stroke(item.c);
+			
 			strokeWeight(itemThickness);
-
+			stroke(item.c);
+			if(view == selected){
+				stroke(#ffffff);
+			}
+			
 			arc(0, 0, w, w, view.angleStart, view.angleStop);
 
 			PVector tcoord = view.calcCoord(new PVector(), radius+20+itemThickness/2);
@@ -102,20 +106,31 @@ public class MapRenderer{
 			ItemView firstView = getView(firstItem);
 			ItemView secondView = getView(secondItem);
 
-			if(firstView != selected) continue;
+			if(firstView != selected && secondView != selected) continue;
 
 			PVector firstCoord = firstView.calcCoord(center, radius);
 			PVector secondCoord = secondView.calcCoord(center, radius);
 
 			float ratio = link.power / (float) maxPower;
+			// float ratio = (1 / link.power) * (float) maxPower;
 			int w = (int) (ratio * maxLinkThickness);
 			w = w < 1 ? 1 : w;
+			// w = 1 - w;
+			// println("w: "+w);
+
+			// int cc = lerpColor(#cccccc, link.c, ratio);
+			// stroke(cc, 200);
 			stroke(link.c, 200);
+
 			// stroke(link.c);
 			strokeWeight(w);
 			// line(firstCoord.x, firstCoord.y, secondCoord.x, secondCoord.y);
-			qubic(firstCoord, secondCoord);
-			// bezier(firstCoord.x, firstCoord.y, 0, 0, 0, 0, secondCoord.x, secondCoord.y);
+			// qubic(firstCoord, secondCoord);
+			noFill();
+			PVector f2 = interpolate(firstCoord, new PVector(), beta);
+			PVector s2 = interpolate(secondCoord, new PVector(), beta);
+			bezier(firstCoord.x, firstCoord.y, f2.x, f2.y, s2.x, s2.y, secondCoord.x, secondCoord.y);
+
 			i += 1;
 		}		
 	}
@@ -168,9 +183,17 @@ public class MapRenderer{
 		return null;
 	}
 
-	public void computeItems() {
-		itemsView = new ArrayList<ItemView>();
+	private PVector interpolate (PVector v1, PVector v2, float t){
+		PVector out = new PVector();
+		out.x = v1.x + (v2.x-v1.x)*t;
+		out.y = v1.y + (v2.y-v1.y)*t;
+		return out;
+	}
 
+	public void computeItems() {
+		// float a = PI * 0.001;
+		float a = 0;
+		itemsView = new ArrayList<ItemView>();
 		int i = 0;
 		int total = map.calcTotalPower();
 
@@ -182,9 +205,9 @@ public class MapRenderer{
 			float center_angle = start_angle + angle/2;
 			
 			ItemView view = new ItemView(item);
-			view.angleStart = start_angle;
+			view.angleStart = start_angle + a;
 			view.angleCenter = center_angle;
-			view.angleStop = stop_angle;
+			view.angleStop = stop_angle - a;
 			itemsView.add(view);
 
 			start_angle = stop_angle;

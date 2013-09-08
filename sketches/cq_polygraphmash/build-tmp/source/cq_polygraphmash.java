@@ -36,7 +36,8 @@ PVector rb;
 public void setup(){
 	size(800, 800);
 	
-	initBuildings("buildings.csv");
+	// initBuildings("buildings.csv");
+	initBuildings("buildings_arcs.csv");
 	initAccessPoints("access_points.csv");
 	initSpaceUsers("space_users.csv");
 	
@@ -122,7 +123,7 @@ public void draw(){
 		println("path: "+graph.calcDist(path));	
 	}
 
-	calcAllPaths();
+	// calcAllPaths();
 }
 
 public void calcAllPaths(){

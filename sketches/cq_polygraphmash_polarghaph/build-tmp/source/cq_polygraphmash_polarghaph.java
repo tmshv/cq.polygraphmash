@@ -32,6 +32,9 @@ int lthickness;
 int radius;
 int rot;
 
+float verticalCoef = 1.5f;
+float oneFloorDist = 10;
+
 ControlP5 cp5;
 
 public void setup(){
@@ -42,19 +45,19 @@ public void setup(){
     .setPosition(10, pos)
       .setSize(200, 20)
         .setRange(0, 1)
-          .setValue(0);
+          .setValue(0.85f);
     pos += 25;
     cp5.addSlider("thickness")
     .setPosition(10, pos)
       .setSize(200, 20)
-        .setRange(1, 50)
-          .setValue(20);
+        .setRange(1, 100)
+          .setValue(30);
     pos += 25;
     cp5.addSlider("lthickness")
     .setPosition(10, pos)
       .setSize(200, 20)
-        .setRange(1, 10)
-          .setValue(1);
+        .setRange(1, 20)
+          .setValue(10);
     pos += 25;
     cp5.addSlider("radius")
     .setPosition(10, pos)
@@ -69,7 +72,7 @@ public void setup(){
           .setValue(0);
 
 	initSpaceUsers("space_users.csv");
-	distTable = loadTable("dist.csv", "header");
+	distTable = loadTable("dist2.csv", "header");
 
 	// PGraphics pdf = createGraphics(width, height, PDF, "map.pdf");
 	// renderBuildings(pdf);
@@ -134,6 +137,9 @@ public void fillGraph(){
 }
 
 public void fillGraph2(){
+	int maxDist = (int) calcMaxDist();
+	println("maxDist: "+maxDist);
+
 	for(SpaceUser su : users){
 		SpaceFunction f = getSF(su.func);
 		if(f == null) println("not found function: "+su.func);
@@ -148,12 +154,15 @@ public void fillGraph2(){
 
 	int i = 0;
 	for(SpaceUser su : users){
-		// if(i > 10) break;
+		// if(i > 30) break;
+		// if(i > 50 && i < 100){
 		SpaceFunction sf = getSF(su.func);
 		String name = str(su.id) +":"+su.comment;
 		Item item = map.create(name, 1, sf.c);
 		item.data = su;
-		i ++;
+		// }
+		i ++;			
+
 	}
 	
 	for(Item item1 : map.items){
@@ -164,7 +173,16 @@ public void fillGraph2(){
 				if(!map.hasLink(itemName1, itemName2, false)){
 					SpaceUser su1 = (SpaceUser) item1.data;
 					SpaceUser su2 = (SpaceUser) item2.data;
-					map.link(itemName1, itemName2, (int) getDist(su1, su2));
+					int cur_dist = (int) getDist(su1, su2);
+					float dist_ratio = (float) cur_dist / (float) maxDist;
+					// if(dist_ratio < 0.5){
+						// int power = int(1 / dist_ratio);
+						int power = 100 * PApplet.parseInt(1 / dist_ratio);
+						// print("power: "+power);
+						// println(" dist ratio: "+dist_ratio);
+						power = cur_dist;//lol
+						map.link(itemName1, itemName2, power);
+					// }
 				}
 			}	
 		}		
@@ -181,14 +199,15 @@ public void draw(){
 	view.radius = radius;
 	view.startArcAngle = radians(rot);
 
-
-
-	background(0xffcccccc);
+	// background(#cccccc);
+	// background(#aaaaaa);
+	background(0xff222233);
 	view.render();
 
 	float ma = atan2((mouseY - view.center.y),(mouseX - view.center.x));
+	ma += TWO_PI;
+	ma %= TWO_PI;
 	view.selectItem(ma);
-	text(str(degrees(ma)), 100, 10);
 }
 
 public SpaceFunction getSF(String name){
@@ -202,12 +221,23 @@ public float getDist(SpaceUser su1, SpaceUser su2){
 	for (TableRow row : distTable.rows()) {
 		int ap1 = row.getInt("access_point1");
 		int ap2 = row.getInt("access_point2");
-
 		if(su1.accessPointID == ap1 && su2.accessPointID == ap2){
-			return row.getFloat("dist");
+			float horiz_dist = row.getFloat("dist");
+			float vertical_dist1 = su1.level * oneFloorDist * verticalCoef;
+			float vertical_dist2 = su2.level * oneFloorDist * verticalCoef;
+			return horiz_dist + vertical_dist1 + vertical_dist2;
 		}
 	}
 	return 0;
+}
+
+public float calcMaxDist(){
+	float out = 0;
+	for (TableRow row : distTable.rows()) {
+		float horiz_dist = row.getFloat("dist");
+		if(horiz_dist > out) out = horiz_dist;
+	}
+	return out;
 }
 
 public void keyPressed(){
@@ -470,9 +500,13 @@ public class MapRenderer{
 		for(ItemView view : itemsView){
 			pushMatrix();
 			Item item = view.item;
-			stroke(item.c);
+			
 			strokeWeight(itemThickness);
-
+			stroke(item.c);
+			if(view == selected){
+				stroke(0xffffffff);
+			}
+			
 			arc(0, 0, w, w, view.angleStart, view.angleStop);
 
 			PVector tcoord = view.calcCoord(new PVector(), radius+20+itemThickness/2);
@@ -496,20 +530,31 @@ public class MapRenderer{
 			ItemView firstView = getView(firstItem);
 			ItemView secondView = getView(secondItem);
 
-			if(firstView != selected) continue;
+			if(firstView != selected && secondView != selected) continue;
 
 			PVector firstCoord = firstView.calcCoord(center, radius);
 			PVector secondCoord = secondView.calcCoord(center, radius);
 
 			float ratio = link.power / (float) maxPower;
+			// float ratio = (1 / link.power) * (float) maxPower;
 			int w = (int) (ratio * maxLinkThickness);
 			w = w < 1 ? 1 : w;
+			// w = 1 - w;
+			// println("w: "+w);
+
+			// int cc = lerpColor(#cccccc, link.c, ratio);
+			// stroke(cc, 200);
 			stroke(link.c, 200);
+
 			// stroke(link.c);
 			strokeWeight(w);
 			// line(firstCoord.x, firstCoord.y, secondCoord.x, secondCoord.y);
-			qubic(firstCoord, secondCoord);
-			// bezier(firstCoord.x, firstCoord.y, 0, 0, 0, 0, secondCoord.x, secondCoord.y);
+			// qubic(firstCoord, secondCoord);
+			noFill();
+			PVector f2 = interpolate(firstCoord, new PVector(), beta);
+			PVector s2 = interpolate(secondCoord, new PVector(), beta);
+			bezier(firstCoord.x, firstCoord.y, f2.x, f2.y, s2.x, s2.y, secondCoord.x, secondCoord.y);
+
 			i += 1;
 		}		
 	}
@@ -562,9 +607,17 @@ public class MapRenderer{
 		return null;
 	}
 
-	public void computeItems() {
-		itemsView = new ArrayList<ItemView>();
+	private PVector interpolate (PVector v1, PVector v2, float t){
+		PVector out = new PVector();
+		out.x = v1.x + (v2.x-v1.x)*t;
+		out.y = v1.y + (v2.y-v1.y)*t;
+		return out;
+	}
 
+	public void computeItems() {
+		// float a = PI * 0.001;
+		float a = 0;
+		itemsView = new ArrayList<ItemView>();
 		int i = 0;
 		int total = map.calcTotalPower();
 
@@ -576,9 +629,9 @@ public class MapRenderer{
 			float center_angle = start_angle + angle/2;
 			
 			ItemView view = new ItemView(item);
-			view.angleStart = start_angle;
+			view.angleStart = start_angle + a;
 			view.angleCenter = center_angle;
-			view.angleStop = stop_angle;
+			view.angleStop = stop_angle - a;
 			itemsView.add(view);
 
 			start_angle = stop_angle;

@@ -13,6 +13,9 @@ int lthickness;
 int radius;
 int rot;
 
+float verticalCoef = 1.5;
+float oneFloorDist = 10;
+
 ControlP5 cp5;
 
 void setup(){
@@ -23,19 +26,19 @@ void setup(){
     .setPosition(10, pos)
       .setSize(200, 20)
         .setRange(0, 1)
-          .setValue(0);
+          .setValue(0.85);
     pos += 25;
     cp5.addSlider("thickness")
     .setPosition(10, pos)
       .setSize(200, 20)
-        .setRange(1, 50)
-          .setValue(20);
+        .setRange(1, 100)
+          .setValue(30);
     pos += 25;
     cp5.addSlider("lthickness")
     .setPosition(10, pos)
       .setSize(200, 20)
-        .setRange(1, 10)
-          .setValue(1);
+        .setRange(1, 20)
+          .setValue(10);
     pos += 25;
     cp5.addSlider("radius")
     .setPosition(10, pos)
@@ -50,7 +53,7 @@ void setup(){
           .setValue(0);
 
 	initSpaceUsers("space_users.csv");
-	distTable = loadTable("dist.csv", "header");
+	distTable = loadTable("dist2.csv", "header");
 
 	// PGraphics pdf = createGraphics(width, height, PDF, "map.pdf");
 	// renderBuildings(pdf);
@@ -115,6 +118,9 @@ void fillGraph(){
 }
 
 void fillGraph2(){
+	int maxDist = (int) calcMaxDist();
+	println("maxDist: "+maxDist);
+
 	for(SpaceUser su : users){
 		SpaceFunction f = getSF(su.func);
 		if(f == null) println("not found function: "+su.func);
@@ -129,12 +135,15 @@ void fillGraph2(){
 
 	int i = 0;
 	for(SpaceUser su : users){
-		// if(i > 10) break;
+		// if(i > 30) break;
+		// if(i > 50 && i < 100){
 		SpaceFunction sf = getSF(su.func);
 		String name = str(su.id) +":"+su.comment;
 		Item item = map.create(name, 1, sf.c);
 		item.data = su;
-		i ++;
+		// }
+		i ++;			
+
 	}
 	
 	for(Item item1 : map.items){
@@ -145,7 +154,16 @@ void fillGraph2(){
 				if(!map.hasLink(itemName1, itemName2, false)){
 					SpaceUser su1 = (SpaceUser) item1.data;
 					SpaceUser su2 = (SpaceUser) item2.data;
-					map.link(itemName1, itemName2, (int) getDist(su1, su2));
+					int cur_dist = (int) getDist(su1, su2);
+					float dist_ratio = (float) cur_dist / (float) maxDist;
+					// if(dist_ratio < 0.5){
+						// int power = int(1 / dist_ratio);
+						int power = 100 * int(1 / dist_ratio);
+						// print("power: "+power);
+						// println(" dist ratio: "+dist_ratio);
+						power = cur_dist;//lol
+						map.link(itemName1, itemName2, power);
+					// }
 				}
 			}	
 		}		
@@ -162,14 +180,15 @@ void draw(){
 	view.radius = radius;
 	view.startArcAngle = radians(rot);
 
-
-
-	background(#cccccc);
+	// background(#cccccc);
+	// background(#aaaaaa);
+	background(#222233);
 	view.render();
 
 	float ma = atan2((mouseY - view.center.y),(mouseX - view.center.x));
+	ma += TWO_PI;
+	ma %= TWO_PI;
 	view.selectItem(ma);
-	text(str(degrees(ma)), 100, 10);
 }
 
 SpaceFunction getSF(String name){
@@ -183,12 +202,23 @@ float getDist(SpaceUser su1, SpaceUser su2){
 	for (TableRow row : distTable.rows()) {
 		int ap1 = row.getInt("access_point1");
 		int ap2 = row.getInt("access_point2");
-
 		if(su1.accessPointID == ap1 && su2.accessPointID == ap2){
-			return row.getFloat("dist");
+			float horiz_dist = row.getFloat("dist");
+			float vertical_dist1 = su1.level * oneFloorDist * verticalCoef;
+			float vertical_dist2 = su2.level * oneFloorDist * verticalCoef;
+			return horiz_dist + vertical_dist1 + vertical_dist2;
 		}
 	}
 	return 0;
+}
+
+float calcMaxDist(){
+	float out = 0;
+	for (TableRow row : distTable.rows()) {
+		float horiz_dist = row.getFloat("dist");
+		if(horiz_dist > out) out = horiz_dist;
+	}
+	return out;
 }
 
 void keyPressed(){
