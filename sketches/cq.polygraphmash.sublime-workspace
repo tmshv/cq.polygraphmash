@@ -4,6 +4,402 @@
 		"selected_items":
 		[
 			[
+				"dis",
+				"dist_ratio"
+			],
+			[
+				"cur",
+				"cur_dist"
+			],
+			[
+				"cal",
+				"calcMaxDist"
+			],
+			[
+				"ved",
+				"vertical_dist1"
+			],
+			[
+				"vec",
+				"verticalCoef"
+			],
+			[
+				"ler",
+				"lerpcolor	lerpColor"
+			],
+			[
+				"a",
+				"angleCenter"
+			],
+			[
+				"be",
+				"beta"
+			],
+			[
+				"seco",
+				"secondCoord"
+			],
+			[
+				"access",
+				"accessPointID"
+			],
+			[
+				"spau",
+				"SpaceUser"
+			],
+			[
+				"itemn",
+				"itemName1"
+			],
+			[
+				"sun",
+				"suName2"
+			],
+			[
+				"sec",
+				"secondCoord"
+			],
+			[
+				"first",
+				"firstCoord"
+			],
+			[
+				"cen",
+				"center_x"
+			],
+			[
+				"rai",
+				"radius"
+			],
+			[
+				"ast",
+				"angleStart"
+			],
+			[
+				"clp",
+				"calcTotalPower"
+			],
+			[
+				"ivw",
+				"ItemView"
+			],
+			[
+				"suna",
+				"suName1"
+			],
+			[
+				"spus",
+				"SpaceUser"
+			],
+			[
+				"sus",
+				"SpaceUser"
+			],
+			[
+				"i",
+				"itemThickness"
+			],
+			[
+				"pu",
+				"pushMatrix"
+			],
+			[
+				"thi",
+				"thickness"
+			],
+			[
+				"fu",
+				"function	function"
+			],
+			[
+				"stri",
+				"String"
+			],
+			[
+				"secon",
+				"second"
+			],
+			[
+				"se",
+				"second"
+			],
+			[
+				"stro",
+				"strongDir"
+			],
+			[
+				"link",
+				"Link"
+			],
+			[
+				"spa",
+				"SpaceUser"
+			],
+			[
+				"apo",
+				"AccessPoint"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"gno",
+				"GraphNode"
+			],
+			[
+				"gnod",
+				"gNodes"
+			],
+			[
+				"ta",
+				"Table"
+			],
+			[
+				"buil",
+				"buildingID"
+			],
+			[
+				"bul",
+				"Building"
+			],
+			[
+				"bui",
+				"Building"
+			],
+			[
+				"su",
+				"SpaceUser"
+			],
+			[
+				"ge",
+				"gEdges"
+			],
+			[
+				"ap",
+				"AccessPoint"
+			],
+			[
+				"accp",
+				"AccessPoint"
+			],
+			[
+				"end",
+				"endDraw"
+			],
+			[
+				"begi",
+				"beginDraw"
+			],
+			[
+				"pgs",
+				"PGraphics"
+			],
+			[
+				"bu",
+				"buildings"
+			],
+			[
+				"po",
+				"poly"
+			],
+			[
+				"start",
+				"start"
+			],
+			[
+				"gen",
+				"getNodeUnder"
+			],
+			[
+				"in",
+				"initCQ"
+			],
+			[
+				"con",
+				"convertLatLongToMerc"
+			],
+			[
+				"la",
+				"latitude"
+			],
+			[
+				"apoi",
+				"accessPoints"
+			],
+			[
+				"di",
+				"digits"
+			],
+			[
+				"as",
+				"accessPoints"
+			],
+			[
+				"begin",
+				"beginShape"
+			],
+			[
+				"do",
+				"double"
+			],
+			[
+				"min",
+				"minY"
+			],
+			[
+				"screen",
+				"screenCoord"
+			],
+			[
+				"coord",
+				"coords"
+			],
+			[
+				"re",
+				"readLineString"
+			],
+			[
+				"setup",
+				"setup	setup"
+			],
+			[
+				"set",
+				"setup	setup"
+			],
+			[
+				"draw",
+				"drawRoute"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"geno",
+				"getNodeUnderMouse"
+			],
+			[
+				"grano",
+				"GraphNode"
+			],
+			[
+				"dge",
+				"drawGraphEdges"
+			],
+			[
+				"gnode",
+				"GraphNode"
+			],
+			[
+				"Gra",
+				"GraphEdge"
+			],
+			[
+				"path",
+				"path_node"
+			],
+			[
+				"node",
+				"Node"
+			],
+			[
+				"is",
+				"isDistanceSet"
+			],
+			[
+				"nos",
+				"nostroke	noStroke"
+			],
+			[
+				"star",
+				"startCoord"
+			],
+			[
+				"arra",
+				"ArrayList"
+			],
+			[
+				"nod",
+				"Node"
+			],
+			[
+				"back",
+				"backgroundColor"
+			],
+			[
+				"prin",
+				"print"
+			],
+			[
+				"sta",
+				"startCoord"
+			],
+			[
+				"ell",
+				"ellipse	ellipse"
+			],
+			[
+				"itemv",
+				"itemsView"
+			],
+			[
+				"bezi",
+				"bezierStepT"
+			],
+			[
+				"V",
+				"ItemView"
+			],
+			[
+				"items",
+				"itemsView"
+			],
+			[
+				"item",
+				"itemsView"
+			],
+			[
+				"radi",
+				"radius"
+			],
+			[
+				"itesms",
+				"itemsStop"
+			],
+			[
+				"starta",
+				"start_angle"
+			],
+			[
+				"itms",
+				"itemsCenter"
+			],
+			[
+				"elli",
+				"ellipseMode	ellipseMode"
+			],
+			[
+				"pub",
+				"public	public var"
+			],
+			[
+				"M",
+				"MapRenderer"
+			],
+			[
+				"pw",
+				"power"
+			],
+			[
+				"map",
+				"MapItem"
+			],
+			[
+				"Map",
+				"MapItem"
+			],
+			[
 				"public",
 				"public_path"
 			],
@@ -32,14 +428,6 @@
 				"width"
 			],
 			[
-				"i",
-				"include"
-			],
-			[
-				"back",
-				"background-color"
-			],
-			[
 				"bac",
 				"background-color"
 			]
@@ -48,31 +436,76 @@
 	"buffers":
 	[
 		{
-			"file": "polargraph/polargraph.pde",
+			"contents": "не бывает общественного пространства без общественной функции\nжилой девелопмент",
 			"settings":
 			{
-				"buffer_size": 15648,
+				"buffer_size": 79,
+				"line_ending": "Unix",
+				"name": "не бывает общественного пространства без обществен"
+			}
+		},
+		{
+			"file": "cq_polygraphmash/cq_polygraphmash.pde",
+			"settings":
+			{
+				"buffer_size": 7437,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "cq_polygraphmash_polarghaph/MapRenderer.pde",
+			"settings":
+			{
+				"buffer_size": 5059,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "cq_polygraphmash_polarghaph/cq_polygraphmash_polarghaph.pde",
+			"settings":
+			{
+				"buffer_size": 5460,
 				"line_ending": "Unix"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Processing/Processing.sublime-build",
 	"command_palette":
 	{
-		"height": 227.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"pro",
+				"Set Syntax: Processing"
+			],
+			[
+				"py",
+				"Set Syntax: Python"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
 			[
 				"inst",
 				"Package Control: Install Package"
 			],
 			[
-				"jade",
-				"Set Syntax: Jade"
+				"proce",
+				"Set Syntax: Processing"
 			],
 			[
-				"ins",
-				"Package Control: Install Package"
+				"proces",
+				"Set Syntax: Processing"
+			],
+			[
+				"lis",
+				"Package Control: List Packages"
+			],
+			[
+				"jade",
+				"Set Syntax: Jade"
 			],
 			[
 				"install",
@@ -103,7 +536,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 476.0
 	},
 	"console":
 	{
@@ -124,6 +557,45 @@
 	},
 	"file_history":
 	[
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/MapRenderer.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/cq_polygraphmash_polarghaph.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/data/dist2.csv",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash/data/buildings_arcs.csv",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash/cq_polygraphmash.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/SpaceUser.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/data/dist.csv",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/Item.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/IData.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/ItemView.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/Map.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/polargraph2/Map.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/polargraph2/MapRenderer.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/polargraph2/polargraph2.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash/CQGraph.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash/dist.csv",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/SpaceFunction.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_polarghaph/data/space_users.csv",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/polargraph2_UI/Xplication.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_splitbuilding/cq_polygraphmash_splitbuilding.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_splitbuilding/SpaceUser.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_splitbuiling/cq_polygraphmash_splitbuilding.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash/Building.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash/data/buildings.csv",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_geomap/cq_polygraphmash_geomap.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_geomap/data/spsheet.csv",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cq_polygraphmash_geomap/Remap.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cqpolygraphmash_map2/cqpolygraphmash_map2.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cqpolygrmash_map/Node.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cqpolygrmash_map/Grid.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/cqpolygrmash_map/cqpolygrmash_map.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/entrance_tool/entrance_tool.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/entrance_tool/ITool.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/entrance_tool/MoveTool.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/polargraph/polargraph.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/polargraph2/Link.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/polargraph2/Item.pde",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/polargraph2/tabla.csv",
+		"/Users/tmshv/Dropbox/CQ Ленполиграфмаш/sketches/[ws] polargraph/[ws] polargraph.pde",
 		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/controllers/email.js",
 		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/tooth.sublime-project",
 		"/Users/tmshv/Dropbox/Dev/zubochistka1.ru/www/views/customers.jade",
@@ -209,27 +681,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"0.0",
+			"!",
+			";",
+			", ",
+			"x",
+			"itemName2",
+			"itemName1",
+			"1",
+			"itemName1",
+			"SpaceUser",
+			"id",
+			"users",
+			"su",
+			"int center_x = width / 2;\n		int center_y = height / 2;",
+			"1, 100",
+			"1",
+			"sf",
+			"su",
+			".function",
+			"function",
+			"service",
+			"sf.name",
+			"art",
+			"production",
+			"office",
+			"entertainment",
+			"retail",
+			"restaurant",
+			"education",
+			"empty",
+			"service",
+			"su.function: ",
+			"initMap",
+			"fillMap",
+			"int",
+			"su2",
+			"SpaceUser",
+			"id",
+			"accessPoints",
+			"AccessPoint",
+			"ap",
+			"fs",
+			" #",
+			" ",
+			"634673",
+			"production",
+			"id",
+			".first",
+			"first",
+			"color",
+			"color fc",
+			"color fc1 = ",
+			"path",
+			"200",
+			"initCQ",
+			"renderGeom",
+			"poly",
+			"initAccessPoints",
+			"; ",
+			"?",
+			";",
+			",",
+			"PMatrix",
+			"coord.",
+			"mouseX",
 			"center",
-			"span",
-			"message",
-			"email",
-			"admin",
-			"col",
-			"e",
-			"communication",
-			"        \n",
-			"err",
-			"xmlhttp",
-			"animated",
-			"userpic",
-			".leftpart",
-			"#Menu",
-			"trianglelink",
-			"')\n",
+			"xyz",
+			"getXYZfromLatLonRadians",
+			"double",
+			"Math.",
+			"tlr",
+			"10",
+			"c",
+			"min",
+			".x",
+			".",
+			"tl",
+			"remap",
+			"mny",
+			"; ",
+			"int",
+			"!",
+			"! ",
 			";",
-			"btn_send",
-			";",
-			"Common"
+			",",
+			"[graphNo]",
+			"nextNode",
+			"path",
+			"isDistanceSet",
+			"parend",
+			"parentGrid",
+			"start",
+			"i",
+			"float",
+			"getNodeAt",
+			"p",
+			"img",
+			".c",
+			"c",
+			"start",
+			"stopCoord",
+			"Node",
+			"art",
+			"false",
+			"b",
+			"raw",
+			"Raw",
+			"		float a1 = center.x;\n		float b1 = center.y;\n		float a2 = center.x;\n		float b2 = center.y;",
+			"center",
+			");\n",
+			"sc",
+			"fc",
+			"sv",
+			"fv",
+			"s",
+			"f",
+			"Y",
+			";\n",
+			"end",
+			"start",
+			"total",
+			"computeCenters",
+			"count",
+			"Item",
+			"PVector",
+			"link",
+			"Link",
+			"link"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -237,6 +816,15 @@
 		"regex": false,
 		"replace_history":
 		[
+			";",
+			",",
+			"!",
+			";",
+			",",
+			"?",
+			";",
+			",",
+			"!",
 			"#leftpart",
 			".leftpart",
 			";\\n"
@@ -250,31 +838,113 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "polargraph/polargraph.pde",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15648,
+						"buffer_size": 79,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								79,
+								79
+							]
+						],
+						"settings":
+						{
+							"auto_name": "не бывает общественного пространства без обществен",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "cq_polygraphmash/cq_polygraphmash.pde",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7437,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2870,
+								2870
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1323.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "cq_polygraphmash_polarghaph/MapRenderer.pde",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5059,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2548,
+								2548
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1433.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "cq_polygraphmash_polarghaph/cq_polygraphmash_polarghaph.pde",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5460,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								493
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Processing/Syntax/Processing.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -318,12 +988,12 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 161.0
+		"height": 190.0
 	},
 	"project": "cq.polygraphmash.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -331,6 +1001,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"ma",
+				"cq_polygraphmash_polarghaph/Map.pde"
+			],
+			[
+				"link",
+				"polargraph2/Link.pde"
+			],
 			[
 				"cty",
 				"www/public/style.css"
@@ -408,10 +1086,6 @@
 				"www\\views\\manage.jade"
 			],
 			[
-				"ma",
-				"www\\node_modules\\jade\\node_modules\\transformers\\node_modules\\uglify-js\\lib\\mozilla-ast.js"
-			],
-			[
 				"c",
 				"www\\config.js"
 			],
@@ -433,7 +1107,7 @@
 		[
 			[
 				"",
-				"E:\\Dropbox\\Dev\\Diet\\diet.sublime-project"
+				"~/Dropbox/Processing/processing.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -453,7 +1127,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 250.0,
+	"side_bar_width": 258.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

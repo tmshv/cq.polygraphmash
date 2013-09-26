@@ -1,3 +1,9 @@
+/*
+* Make It (makeitcenter.com) > CQ Polygraphmash Workshop > Roman Timashev (roman@tmshv.ru)
+* Date::2013 [late]
+* This code is licensed under the MIT license. (http://opensource.org/licenses/MIT)
+*/
+
 import processing.pdf.*;
 
 ArrayList<Building> buildings;
@@ -54,6 +60,7 @@ void draw(){
 		}
 		pdf.dispose();
 	}
+	exit();
 }
 
 Building getBuilding(int id){

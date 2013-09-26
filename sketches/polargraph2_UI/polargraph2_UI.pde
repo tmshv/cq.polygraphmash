@@ -1,3 +1,10 @@
+/*
+* Make It (makeitcenter.com) > CQ Polygraphmash Workshop > Roman Timashev (roman@tmshv.ru)
+* Make It (makeitcenter.com) > CQ Polygraphmash Workshop > Menhir Yusupov (DY) (menhir.y@gmail.com)
+* Date::2013 [late]
+* This code is licensed under the MIT license. (http://opensource.org/licenses/MIT)
+*/
+
 import controlP5.*;
 import processing.pdf.*;
 
@@ -11,6 +18,7 @@ Map map;
 MapRenderer view;
 
 float beta;
+float track;
 
 void setup(){
   size(650, 650);
